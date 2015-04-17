@@ -13,6 +13,11 @@ I also wanted it to "consume" the block when removed.
 Experiment #3 - wheatseed
 In this experiment I wanted plants to actually drink water. This would partially inhibit massive farms due to a requirement of a constant supply of water.
 Though I wanted to take it one step further and make each plant require a specific liquid. Still a work in progress.
+
+On further experimentation it seems world.objectConfigParameter(entity.id(), "parameter", "default return value") is an extremely powerful tool.
+It allows you to look up specific details of the object it self within the JSON of the file. This helped me set which type of liquid I wanted for the crop to use.
+
+Though the way the liquids.config really sucks since it is numerically based, so mods which end up using the same numbers will end up having issues. Nothing I really can do about that. 
 ==
 
 Other Notes: 

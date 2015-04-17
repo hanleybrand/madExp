@@ -17,7 +17,7 @@
   
   "inventoryIcon" : "wheatseedicon.png",
   "scripts" : [ "/objects/farmables/wheat/waterR.lua" ],
-	
+	"liquidType" : 1,
 	"orientations" : [
     {
       "dualImage" : "wheatseed.png:<color>.<stage>.<alt>",
