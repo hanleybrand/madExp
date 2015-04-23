@@ -6,6 +6,12 @@ function init()
 	storage.epochTime = world.time()
 end
 
+-----------------------
+-- Main Mod
+-----------------------
+-- liquidType is a JSON value placed inside the object file which is numerically corresponding to the values in the liquid.config
+--liquidAmount is a planned value for the maximum storage capacity of the plant
+--Every 5 seconds the 3 major functions of the plant is running. 
 function update(dt)
 	posOrg = entity.position()
 	reqLiqType = world.objectConfigParameter(entity.id(), "liquidType", 0)
@@ -21,10 +27,10 @@ end
 
 function removeLiq()
 	world.logInfo("Remove liq Function Activated")
-	liqType, liqAmount = world.liquidAt({posOrg[1],posOrg[2]})
-	world.logInfo(tostring(liqType[1]).." Liq type")
+	liqType, liqAmount = world.liquidAt({posOrg[1],posOrg[2]-2})
+	world.logInfo(liqType)
 	if liqType[1] == reqLiqType and storage.liquidLevel <= 900 then
-		world.destroyLiquid(entity.position())
+		world.destroyLiquid({posOrg[1],posOrg[2]-2})
 		storage.liquidLevel = storage.liquidLevel + 100
 		world.logInfo(tostring(storage.liquidLevel).." Added New Liquid")
 	else
@@ -34,7 +40,7 @@ end
 
 function consumeLiq()
 	world.logInfo("Consume liq Function Activated")
-		if storage.epochTime <= storage.epochTime + 30 then
+		if storage.epochTime <= world.time() + 30 then
 			local calTime = world.time() - storage.epochTime
 			storage.liquidLevel = storage.liquidLevel - calTime
 			storage.epochTime = world.time()
